@@ -6,7 +6,7 @@ const Nav = () => {
 const location = useLocation()
 
   return (
-    <nav className="px-4 p-2 text-xl text-white flex items-center justify-between  bg-gray-900">
+    <nav className="fixed top-0 left-0 right-0 px-4 p-2 text-xl text-white flex items-center justify-between bg-gradient-to-b from-gray-900 to-transparent">
         <div className="flex gap-4 items-center *:p-2 *:rounded-md *:transition-all *:duration-100 *:hover:bg-gray-800">
             <img className="w-13" src={GSIcon} alt="" />
             <Link className={`${location.pathname === "/home" && "text-[#ffdb8d] font-bold"}`} to="/home">Home</Link>
