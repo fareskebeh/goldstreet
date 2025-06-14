@@ -8,7 +8,7 @@ const DtNav = ({ user }) => {
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="fixed top-0 right-0 left-0 bg-gradient-to-b from-black to-transparent flex z-20 p-4 justify-between">
+    <div className="fixed top-0 right-0 left-0 bg-gradient-to-b from-[#101010] to-transparent flex z-20 p-4 justify-between">
       {open && (
         <div
           onClick={() => setOpen(false)}

@@ -9,7 +9,7 @@ const MbNav = ({ user }) => {
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="flex bg-gradient-to-b from-black to-transparent fixed top-0 left-0 right-0 justify-between p-6">
+    <div className="flex bg-gradient-to-b from-[#101010] to-transparent fixed top-0 left-0 right-0 justify-between p-6">
       <Link to="/home" className="contents">
         <img className="w-10" src={GS} />
       </Link>
