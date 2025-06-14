@@ -9,7 +9,7 @@ const MbNav = ({ user }) => {
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="flex bg-gradient-to-b from-[#101010] to-transparent fixed top-0 left-0 right-0 justify-between p-6">
+    <div className="flex bg-gradient-to-b from-[#101010] to-transparent fixed z-[999] top-0 left-0 right-0 justify-between p-6">
       <Link to="/home" className="contents">
         <img className="w-10" src={GS} />
       </Link>
@@ -25,17 +25,17 @@ const MbNav = ({ user }) => {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.4 }}
             onClick={() => setOpen(false)}
-            className={`fixed bg-black/80 z-10 top-0 left-0 right-0 bottom-0`}
+            className={`fixed bg-black/80 z-[899] top-0 left-0 right-0 bottom-0`}
           />
         )}
       </AnimatePresence>
 
       <div
         className={`${
-          open ? "" : "translate-x-100"
+          open ? "" : "translate-x-full"
         } transition duration-400 bg-neutral-950 ${
           user ? "" : "w-70"
-        } z-20 flex flex-col justify-between p-6 fixed top-0 right-0 bottom-0`}
+        }  flex flex-col justify-between p-6 fixed z-[999] top-0 right-0 bottom-0`}
       >
         <div className="text-white font-bold text-2xl flex justify-between">
           <p>Gold Street</p>
