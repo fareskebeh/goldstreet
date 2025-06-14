@@ -8,8 +8,13 @@ import Pricing from './components/Pricing'
 import Register from './components/Register'
 import MbNav from './components/MbNav'
 import DtNav from './components/DtNav'
+import noPfp from "./assets/blank.png"
 
 const App = () => {
+
+  //this line is here so that i can test how the app would look like with/without a user
+  const[user,setUser] = useState(null)
+  
   const[vp,setVp]= useState(null)
   
   useEffect(()=> {
@@ -24,13 +29,13 @@ const App = () => {
   return (
     <Router>
       {
-        vp === "small" ? (<MbNav/>) : (<DtNav/>)
+        vp === "small" ? (<MbNav user={user}/>) : (<DtNav user={user}/>)
       }
       <Routes>
         <Route path='/home' element={<Home/>}/>
         <Route path='/' element={<Navigate to="/home"/>}/>
         <Route path='/about' element={<About/>}/>
-        <Route path='/Login' element={<Login/>}/>
+        <Route path='/login' element={<Login/>}/>
         <Route path='/register' element={<Register/>}/>
         <Route path='/pricing' element={<Pricing/>}/>
         <Route path='*' element={<NotFound/>}/>
