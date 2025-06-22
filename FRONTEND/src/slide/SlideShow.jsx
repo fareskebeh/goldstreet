@@ -7,8 +7,13 @@ import {
   HiChevronLeft,
 } from "react-icons/hi";
 import { AnimatePresence, motion } from "framer-motion";
+import {useSwipeable} from "react-swipeable"
 
 const SlideShow = ({ vp }) => {
+  const handlers = useSwipeable({
+    onSwipedDown: ()=> slide("bwd") ,
+    onSwipedUp: ()=> slide("fwd") ,
+  })
   const pages = ["/home", "/community", "/pricing", "/contact-us"];
   const location = useLocation();
   const navigate = useNavigate();
@@ -27,7 +32,8 @@ const SlideShow = ({ vp }) => {
   };
 
   return (
-    <div
+    <div 
+      {...handlers}
       className={`h-screen pt-22 px-4 sm:pt-0 flex items-center ${
         vp === "small" ? "flex-col" : ""
       } justify-between`}
