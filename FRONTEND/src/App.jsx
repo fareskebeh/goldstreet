@@ -26,7 +26,7 @@ const App = () => {
 
   useEffect(() => {
     const adjVp = () => {
-      setVp(window.innerWidth < 500 ? "small" : "wide");
+      setVp(window.innerWidth < 700 ? "small" : "wide");
     };
     window.addEventListener("resize", adjVp);
     adjVp();
