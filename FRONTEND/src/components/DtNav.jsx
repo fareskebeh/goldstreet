@@ -15,10 +15,9 @@ const DtNav = ({ user }) => {
           className="fixed top-0 right-0 bottom-0 left-0 z-0"
         />
       )}
+      <img draggable="false" className="w-10 mr-2" src={GS} alt="" />
 
       <div className="flex *:transition-all duration-400 items-center gap-8 text-xl">
-        <img draggable="false" className="w-10 mr-2" src={GS} alt="" />
-
         <Link
           to="/home"
           className={
@@ -29,6 +28,18 @@ const DtNav = ({ user }) => {
         >
           Home
         </Link>
+
+        <Link
+          to="/community"
+          className={
+            location.pathname === "/community"
+              ? "text-white font-bold"
+              : "text-[#808080]"
+          }
+        >
+          Community
+        </Link>
+
         <Link
           to="/pricing"
           className={
@@ -40,14 +51,14 @@ const DtNav = ({ user }) => {
           Pricing
         </Link>
         <Link
-          to="/about"
+          to="/contact-us"
           className={
-            location.pathname === "/about"
+            location.pathname === "/contact-us"
               ? "text-white font-bold"
               : "text-[#808080]"
           }
         >
-          About
+          Contact Us
         </Link>
       </div>
 
@@ -84,9 +95,14 @@ const DtNav = ({ user }) => {
         </div>
       ) : (
         <div>
-            <Link to="/login" className="contents">
-                <button className="cursor-pointer font-bold bg-white p-2 text-xl hover:scale-102 transition duration-100 rounded-lg" to="/login">Log In</button>
-            </Link>
+          <Link to="/login" className="contents">
+            <button
+              className="cursor-pointer font-bold bg-white p-2 text-xl hover:scale-102 transition duration-100 rounded-lg"
+              to="/login"
+            >
+              Log In
+            </button>
+          </Link>
         </div>
       )}
     </div>
