@@ -38,10 +38,11 @@ const App = () => {
       {vp === "small" ? <MbNav user={user} /> : <DtNav user={user} />}
         <Routes>
           <Route path="/" element={<SlideShow vp={vp}/>}>
-            <Route path="/home" element={<Home/>}/>
-            <Route path="/community" element={<Community/>}/>
-            <Route path="/pricing" element={<Pricing/>}/>
-            <Route path="/contact-us" element={<ContactUs/>}/>
+            <Route index element={<Navigate to="home" />} />
+            <Route path="home" element={<Home/>}/>
+            <Route path="community" element={<Community/>}/>
+            <Route path="pricing" element={<Pricing/>}/>
+            <Route path="contact-us" element={<ContactUs/>}/>
           </Route>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
