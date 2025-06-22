@@ -1,4 +1,3 @@
-import React from 'react'
 import SplitText from "../bits/SplitText";
 import ShinyText from "../bits/ShinyText";
 
@@ -9,7 +8,7 @@ const handleAnimationComplete = () => {
 
 const Home = () => {
   return (
-    <div className='p-8 flex flex-col gap-4'>
+    <div className='p-4 flex flex-col gap-4'>
       <SplitText text="Ready to start your journey in the trading realm?"
       className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-relaxed font-bold text-left"
       delay={100}
