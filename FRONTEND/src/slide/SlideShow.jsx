@@ -13,6 +13,7 @@ const SlideShow = ({ vp }) => {
   const handlers = useSwipeable({
     onSwipedDown: ()=> slide("bwd") ,
     onSwipedUp: ()=> slide("fwd") ,
+    trackMouse: false,
   })
   const pages = ["/home", "/community", "/pricing", "/contact-us"];
   const location = useLocation();
