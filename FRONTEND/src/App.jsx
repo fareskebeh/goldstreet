@@ -14,6 +14,9 @@ import Register from "./components/Register";
 import MbNav from "./components/MbNav";
 import DtNav from "./components/DtNav";
 import noPfp from "./assets/blank.png";
+import SlideShow from "./slide/SlideShow";
+import Community from "./components/Community"
+import ContactUs from "./components/ContactUs"
 
 const App = () => {
   //this line is here so that i can test how the app would look like with/without a user
@@ -34,8 +37,12 @@ const App = () => {
     <Router>
       {vp === "small" ? <MbNav user={user} /> : <DtNav user={user} />}
         <Routes>
-          <Route path="/home" element={<Home />} />
-          <Route path="/" element={<Navigate to="/home" />} />
+          <Route path="/" element={<SlideShow vp={vp}/>}>
+            <Route path="/home" element={<Home/>}/>
+            <Route path="/community" element={<Community/>}/>
+            <Route path="/pricing" element={<Pricing/>}/>
+            <Route path="/contact-us" element={<ContactUs/>}/>
+          </Route>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="*" element={<NotFound />} />
