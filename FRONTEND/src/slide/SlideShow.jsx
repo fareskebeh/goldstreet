@@ -44,8 +44,8 @@ const SlideShow = ({ vp }) => {
           <button
             onClick={() => slide("bwd")}
             className={`${
-              location.pathname === "/home" ? "hidden" : ""
-            } text-white`}
+              location.pathname === "/home" ? "invisible" : ""
+            } text-neutral-700`}
           >
             <HiChevronUp size={40} />
           </button>
@@ -55,7 +55,7 @@ const SlideShow = ({ vp }) => {
           <button
             onClick={() => slide("bwd")}
             className={`${
-              location.pathname === "/home" ? "hidden" : ""
+              location.pathname === "/home" ? "invisible" : ""
             } text-white cursor-pointer hover:-translate-x-1 transition duration-300 active:-translate-x-2`}
           >
             <HiChevronLeft size={80} />
@@ -79,7 +79,7 @@ const SlideShow = ({ vp }) => {
           <button
             onClick={() => slide("fwd")}
             className={`${
-              location.pathname === "/contact-us" ? "hidden" : ""
+              location.pathname === "/contact-us" ? "invisible" : ""
             } text-neutral-700`}
           >
             <HiChevronDown size={40} />
@@ -90,7 +90,7 @@ const SlideShow = ({ vp }) => {
           <button
             onClick={() => slide("fwd")}
 className={`${
-              location.pathname === "/contact-us" ? "hidden" : ""
+              location.pathname === "/contact-us" ? "invisible" : ""
             } text-white cursor-pointer hover:translate-x-1 transition duration-300 active:translate-x-2`}          >
             <HiChevronRight size={80} />
           </button>
