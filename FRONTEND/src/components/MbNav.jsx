@@ -54,10 +54,10 @@ const MbNav = ({ user }) => {
           </Link>
           <Link
             onClick={() => setOpen(false)}
-            className={location.pathname === "/about" ? "bg-neutral-900" : ""}
-            to="about"
+            className={location.pathname === "/community" ? "bg-neutral-900" : ""}
+            to="community"
           >
-            About
+            Community
           </Link>
           <Link
             onClick={() => setOpen(false)}
@@ -65,6 +65,13 @@ const MbNav = ({ user }) => {
             to="pricing"
           >
             Pricing
+          </Link>
+          <Link
+            onClick={() => setOpen(false)}
+            className={location.pathname === "/contact-us" ? "bg-neutral-900" : ""}
+            to="contact-us"
+          >
+            Contact Us
           </Link>
         </div>
 
