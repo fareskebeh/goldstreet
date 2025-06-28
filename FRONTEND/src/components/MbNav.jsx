@@ -3,6 +3,7 @@ import { HiMenu, HiX, HiChevronRight } from "react-icons/hi";
 import GS from "../assets/GS.png";
 import { Link, useLocation } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
+import blankPfp from "../assets/blank.png"
 
 const MbNav = ({ user }) => {
   const location = useLocation();
@@ -10,6 +11,7 @@ const MbNav = ({ user }) => {
 
   return (
     <div className="flex bg-gradient-to-b from-black to-transparent fixed z-[999] top-0 left-0 right-0 justify-between p-6">
+      
       <Link to="/home" className="contents">
         <img className="w-10" src={GS} />
       </Link>
@@ -25,7 +27,7 @@ const MbNav = ({ user }) => {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.4 }}
             onClick={() => setOpen(false)}
-            className={`fixed bg-black/80 z-[899] top-0 left-0 right-0 bottom-0`}
+            className={`fixed bg-black/80 max-w-screen z-[899] top-0 left-0 right-0 bottom-0`}
           />
         )}
       </AnimatePresence>
@@ -76,16 +78,16 @@ const MbNav = ({ user }) => {
         </div>
 
         {user ? (
-          <div className="flex items-center gap-4">
+          <Link to="/home" className="flex items-center gap-4">
             <div>
-              <img className="w-15 rounded-full" src={user.pfp} alt="" />
+              <img className="w-10 rounded-full" src={blankPfp} alt="" />
             </div>
             <div>
-              <p className="font-bold text-xl text-white">{user.username}</p>
+              <p className="font-bold text-xl text-white">{user.email.slice(0, user.email.indexOf("@"))}@...</p>
               <p className="text-neutral-400">See your account details</p>
             </div>
             <HiChevronRight className="text-white" size={35} />
-          </div>
+          </Link>
         ) : (
           <div className="flex flex-col items-start gap-2">
             <p className="text-neutral-400">Already a member?</p>

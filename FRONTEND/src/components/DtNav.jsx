@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import GS from "../assets/GS.png";
 import { Link, useLocation } from "react-router-dom";
 import { HiChevronRight } from "react-icons/hi";
+import blankPfp from "../assets/blank.png"
 
 const DtNav = ({ user }) => {
   const location = useLocation();
@@ -15,7 +16,9 @@ const DtNav = ({ user }) => {
           className="fixed top-0 right-0 bottom-0 left-0 z-0"
         />
       )}
+      <Link to="/home" className="contents">
       <img draggable="false" className="w-10 mr-2" src={GS} alt="" />
+      </Link>
 
       <div className="flex *:transition-all duration-400 items-center gap-8 text-xl">
         <Link
@@ -66,7 +69,7 @@ const DtNav = ({ user }) => {
         <div className="relative">
           <img
             onClick={() => setOpen(!open)}
-            src={user.pfp}
+            src={blankPfp}
             className=" w-10 rounded-full cursor-pointer"
             alt=""
           />
@@ -75,14 +78,14 @@ const DtNav = ({ user }) => {
               open
                 ? "visible opacity-100"
                 : "-translate-y-1 invisible opacity-0"
-            } transition-all duration-200 bg-neutral-800 border border-neutral-600 rounded-lg cursor-pointer p-4 absolute top-12 right-2`}
+            } transition-all duration-200 bg-black border border-neutral-800 rounded-lg cursor-pointer p-4 absolute top-12 right-2`}
           >
             <p className="text-neutral-400">You're logged in as:</p>
             <Link className="">
               <div className="p-4 hover:bg-neutral-700/50 rounded-md transition duration-100 flex gap-4">
                 <div>
                   <p className="text-2xl font-bold text-white">
-                    {user.username}
+                    {user.email}
                   </p>
                   <p className="text-neutral-400">See your account info</p>
                 </div>
