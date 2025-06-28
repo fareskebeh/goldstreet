@@ -16,12 +16,23 @@ import SlideShow from "./slide/SlideShow";
 import Community from "./components/Community"
 import ContactUs from "./components/ContactUs"
 import bg from "./assets/bg.jpg"
+import db from "./client/db";
 
 const App = () => {
-  //this line is here so that i can test how the app would look like with/without a user
+  
   const [user, setUser] = useState(null);
 
+
   const [vp, setVp] = useState(null);
+
+  useEffect(() => {
+  const { data: { subscription } } = db.auth.onAuthStateChange((_event, session) => {
+    setUser(session?.user || null);
+  });
+
+  return () => subscription.unsubscribe();
+}, []);
+
 
   useEffect(() => {
     const adjVp = () => {
@@ -45,8 +56,8 @@ const App = () => {
             <Route path="pricing" element={<Pricing/>}/>
             <Route path="contact-us" element={<ContactUs/>}/>
           </Route>
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
+          <Route path="/login" element={user? <Navigate to="/home"/> : <Login />} />
+          <Route path="/register" element={user ? <Navigate to="/home"/> : <Register />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         </div>
