@@ -1,0 +1,26 @@
+@import "tailwindcss";
+@font-face {
+  font-family: "Figtree";
+  src: url(./assets/Figtree/Figtree-VariableFont_wght.ttf);
+}
+
+@keyframes shine {
+  0% {
+    background-position: 100%;
+  }
+  100% {
+    background-position: -100%;
+  }
+}
+
+* {
+  font-family: "Figtree";
+}
+
+.animate-shine {
+  animation: shine 5s linear infinite;
+}
+
+body {
+  background: #101010;
+}
