@@ -78,7 +78,7 @@ const MbNav = ({ user }) => {
         </div>
 
         {user ? (
-          <Link to="/home" className="flex items-center gap-4">
+          <Link to="/dashboard" className="flex items-center gap-4">
             <div>
               <img className="w-10 rounded-full" src={blankPfp} alt="" />
             </div>

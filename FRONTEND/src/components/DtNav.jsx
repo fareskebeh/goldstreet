@@ -81,7 +81,7 @@ const DtNav = ({ user }) => {
             } transition-all duration-200 bg-black border border-neutral-800 rounded-lg cursor-pointer p-4 absolute top-12 right-2`}
           >
             <p className="text-neutral-400">You're logged in as:</p>
-            <Link className="">
+            <Link to="/dashboard">
               <div className="p-4 hover:bg-neutral-700/50 rounded-md transition duration-100 flex gap-4">
                 <div>
                   <p className="text-2xl font-bold text-white">
