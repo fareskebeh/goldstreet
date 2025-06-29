@@ -17,6 +17,7 @@ import Community from "./components/Community"
 import ContactUs from "./components/ContactUs"
 import bg from "./assets/bg.jpg"
 import db from "./client/db";
+import Verify from "./authPages/Verify";
 
 const App = () => {
   
@@ -58,6 +59,7 @@ const App = () => {
           </Route>
           <Route path="/login" element={user? <Navigate to="/home"/> : <Login />} />
           <Route path="/register" element={user ? <Navigate to="/home"/> : <Register />} />
+          <Route path="/verify" element={user ? <Navigate to="/home"/> : <Verify/>}/>
           <Route path="*" element={<NotFound />} />
         </Routes>
         </div>
