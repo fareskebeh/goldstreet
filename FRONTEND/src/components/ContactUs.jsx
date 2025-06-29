@@ -15,7 +15,7 @@ const ContactUs = () => {
       </motion.p>
       <p className="text-neutral-400 sm:text-xl">
         Email us at:{" "}
-        <span className="text-xl text-white">goldstreettraders@gmail.com</span>
+        <span className="text-xl text-white">goldstreetraders@gmail.com</span>
       </p>
 
       <div className="text-center py-4 text-sm text-neutral-500">
@@ -27,8 +27,7 @@ const ContactUs = () => {
           Reach out to our socials
         </p>
         <div className="*:rounded-full *:p-4 sm:*:hover:scale-105 flex gap-4">
-
-          <a className="cursor-pointer active:scale-100  transition duration-300 p-2 flex items-center gap-2 bg-neutral-800">
+          <a href="https://www.instagram.com/goldstreet.official?igsh=MWw2aGM3MmhxZmc5Mw==" className="cursor-pointer active:scale-100  transition duration-300 p-2 flex items-center gap-2 bg-neutral-800">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               x="0px"
@@ -45,7 +44,7 @@ const ContactUs = () => {
             <svg
               xmlns="http://www.w3.org/2000/svg"
               x="0px"
-              fill="white"
+              fill="#505050"
               className="w-10 h-10"
               y="0px"
               viewBox="0 0 50 50"
@@ -59,15 +58,16 @@ const ContactUs = () => {
               xmlns="http://www.w3.org/2000/svg"
               x="0px"
               y="0px"
-              fill="white"
+              fill="#505050"
               className="w-10 h-10"
-              viewBox="0 0 30 30"
+              viewBox="0 0 50 50"
             >
-              <path d="M15,3C8.373,3,3,8.373,3,15c0,6.016,4.432,10.984,10.206,11.852V18.18h-2.969v-3.154h2.969v-2.099c0-3.475,1.693-5,4.581-5 c1.383,0,2.115,0.103,2.461,0.149v2.753h-1.97c-1.226,0-1.654,1.163-1.654,2.473v1.724h3.593L19.73,18.18h-3.106v8.697 C22.481,26.083,27,21.075,27,15C27,8.373,21.627,3,15,3z"></path>
+              <path d="M41,4H9C6.243,4,4,6.243,4,9v32c0,2.757,2.243,5,5,5h32c2.757,0,5-2.243,5-5V9C46,6.243,43.757,4,41,4z M37.006,22.323 c-0.227,0.021-0.457,0.035-0.69,0.035c-2.623,0-4.928-1.349-6.269-3.388c0,5.349,0,11.435,0,11.537c0,4.709-3.818,8.527-8.527,8.527 s-8.527-3.818-8.527-8.527s3.818-8.527,8.527-8.527c0.178,0,0.352,0.016,0.527,0.027v4.202c-0.175-0.021-0.347-0.053-0.527-0.053 c-2.404,0-4.352,1.948-4.352,4.352s1.948,4.352,4.352,4.352s4.527-1.894,4.527-4.298c0-0.095,0.042-19.594,0.042-19.594h4.016 c0.378,3.591,3.277,6.425,6.901,6.685V22.323z"></path>
             </svg>
           </a>
-
         </div>
+          <p className="text-neutral-400 mt-4">Coming soon on YouTube and TikTok!</p>
+
       </div>
     </div>
   );
