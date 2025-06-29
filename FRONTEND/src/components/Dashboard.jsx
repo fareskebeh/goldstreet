@@ -55,8 +55,10 @@ const Dashboard = () => {
             >
               <p>Are you sure you want to log out?</p>
 
-              <div className="flex justify-center gap-4 *:p-3 *:text-xl *:rounded-xl *:cursor-pointer *:font-bold *:border">
-                <button onClick={()=>logOut()} className="bg-yellow-500 border-amber-300">
+              <div className={`flex justify-center gap-4 *:p-3
+              
+              *:text-xl *:rounded-xl *:cursor-pointer *:font-bold *:border`}>
+                <button onClick={()=>logOut()} className={`transition duration-100 ${logging ? "bg-neutral-500" : "bg-white"} text-black`}>
                   {
                     logging ? <div className="loader mx-8"></div> : "Log Out"
                   }
