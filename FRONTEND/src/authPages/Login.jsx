@@ -27,6 +27,7 @@ const Login = () => {
 
   const login = async (e) => {
     e.preventDefault();
+    setLogging(true)
     if (email.trim() === "" || password.trim() === "") {
       setOutput({
         ...output,
@@ -116,7 +117,6 @@ const Login = () => {
 
             <button
               type="submit"
-              onClick={() => setLogging(true)}
               className={`${
                 logging ? "bg-neutral-500 pointer-events-none " : "bg-white"
               } sm:cursor-pointer sm:hover:scale-101 sm:active:scale-100 transition-all duration-100 p-4 sm:p-3 text-3xl flex justify-center font-bold rounded-xl`}

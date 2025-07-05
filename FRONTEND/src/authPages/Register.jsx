@@ -38,6 +38,7 @@ const Register = () => {
 
   const registerUser = async (e) => {
     e.preventDefault();
+    setLogging(true)
     if (
       credentials.email.trim() === "" ||
       credentials.username.trim() === "" ||
@@ -198,7 +199,6 @@ const Register = () => {
           </AnimatePresence>
 
           <button
-            onClick={() => setLogging(true)}
             type="submit"
             className="flex justify-center w-full cursor-pointer sm:hover:scale-101 active:scale-100 transition duration-100 p-3 sm:p-3 text-2xl font-bold rounded-xl bg-white"
           >
