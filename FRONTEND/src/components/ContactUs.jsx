@@ -15,7 +15,7 @@ const ContactUs = () => {
       </motion.p>
       <p className="text-neutral-400 sm:text-xl">
         Email us at:{" "}
-        <span className="text-xl text-white">goldstreetraders@gmail.com</span>
+        <a href="mailto:goldstreetraders@gmail.com" className="text-xl text-white">goldstreetraders@gmail.com</a>
       </p>
 
       <div className="text-center py-4 text-sm text-neutral-500">
@@ -24,10 +24,10 @@ const ContactUs = () => {
 
       <div className="flex flex-col gap-2">
         <p className="text-neutral-400 sm:text-xl pb-4">
-          Reach out to our socials
+          Find us on social media
         </p>
         <div className="*:rounded-full *:p-4 sm:*:hover:scale-105 flex gap-4">
-          <a href="https://www.instagram.com/goldstreet.official?igsh=MWw2aGM3MmhxZmc5Mw==" className="cursor-pointer active:scale-100  transition duration-300 p-2 flex items-center gap-2 bg-neutral-800">
+          <a target="_blank" href="https://www.instagram.com/goldstreet.official?igsh=MWw2aGM3MmhxZmc5Mw==" className="cursor-pointer active:scale-100  transition duration-300 p-2 flex items-center gap-2 bg-neutral-800">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               x="0px"
@@ -40,11 +40,11 @@ const ContactUs = () => {
             </svg>
           </a>
 
-          <a className="cursor-pointer active:scale-100  transition duration-300 p-2 flex items-center gap-2 bg-neutral-800">
+          <a target="_blank" href="https://www.youtube.com/@GoldStreet-u8v" className="cursor-pointer active:scale-100  transition duration-300 p-2 flex items-center gap-2 bg-neutral-800">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               x="0px"
-              fill="#505050"
+              fill="#fff"
               className="w-10 h-10"
               y="0px"
               viewBox="0 0 50 50"
@@ -53,12 +53,12 @@ const ContactUs = () => {
             </svg>
           </a>
 
-          <a className="cursor-pointer active:scale-100  transition duration-300 p-2 flex items-center gap-2 bg-neutral-800">
+          <a target="_blank" href="https://www.tiktok.com/@gold.street0?_t=ZG-8xm0yuJNsO1&_r=1" className="cursor-pointer active:scale-100  transition duration-300 p-2 flex items-center gap-2 bg-neutral-800">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               x="0px"
               y="0px"
-              fill="#505050"
+              fill="#fff"
               className="w-10 h-10"
               viewBox="0 0 50 50"
             >
@@ -66,7 +66,6 @@ const ContactUs = () => {
             </svg>
           </a>
         </div>
-          <p className="text-neutral-400 mt-4">Coming soon on YouTube and TikTok!</p>
 
       </div>
     </div>
