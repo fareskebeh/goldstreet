@@ -124,8 +124,9 @@ const Login = () => {
               {logging ? <div className="m-3 loader" /> : "Log In"}
             </button>
           </form>
-
+          {/*
           <Link className="text-xl text-neutral-400">Forgot Password</Link>
+          */}
         </div>
       </div>
     </>
