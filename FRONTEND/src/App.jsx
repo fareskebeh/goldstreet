@@ -21,6 +21,7 @@ import Verify from "./authPages/Verify";
 import Dashboard from "./components/Dashboard";
 
 const App = () => {
+  const[verified,setVerified] = useState("unverified")
   
   const [user, setUser] = useState(null);
 
@@ -60,7 +61,7 @@ const App = () => {
           </Route>
           <Route path="/login" element={user? <Navigate to="/home"/> : <Login />} />
           <Route path="/register" element={user ? <Navigate to="/home"/> : <Register />} />
-          <Route path="/verify" element={user ? <Navigate to="/home"/> : <Verify/>}/>
+          <Route path="/verify" element={verified==="verified" ? <Navigate to="/home"/> : verified==="verifying" ? <Verify setVerified={setVerified} verified={verified}/> : <Navigate to="/home"/>}/>
           <Route path="*" element={<NotFound />} />
           <Route path="/dashboard" element={user? <Dashboard/> : <Navigate to="/home"/>}/>
         </Routes>

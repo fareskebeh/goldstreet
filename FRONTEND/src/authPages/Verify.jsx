@@ -2,14 +2,13 @@ import { useState,useEffect } from "react";
 import db from "../client/db";
 import { HiCheckCircle } from "react-icons/hi";
 
-const Verify = () => {
-    const[verified,setVerified] = useState(false)
+const Verify = ({verified,setVerified}) => {
 
   useEffect(() => {
     const { data: { subscription } } = db.auth.onAuthStateChange(
       async (event, session) => {
         if (event === "SIGNED_IN" && session?.user?.email_confirmed_at) {
-          setVerified(true)
+          setVerified("verified")
         }
       }
     );
@@ -25,7 +24,6 @@ const Verify = () => {
         {
            verified ? <HiCheckCircle size={40} className="text-green-500"/> : <div className="verify-loader" />
         }  
-      
       </div>
     </div>
   );
