@@ -54,7 +54,7 @@ const Pricing = () => {
             ${plan.price} per week
           </p>
           <div className="sm:text-2xl text-xl sm:flex items-center space-y-4 sm:space-y-0 gap-4 justify-start">
-            <p className="underline">currently free until July 21st</p>
+            <p className="underline">currently free until July 28th</p>
             <Link
               to="/register"
               className="p-2 hover:scale-102 active:scale-100 transition duration-100 bg-white text-black rounded-lg font-bold"
