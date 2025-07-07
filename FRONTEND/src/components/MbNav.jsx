@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { HiMenu, HiX, HiChevronRight } from "react-icons/hi";
-import GS from "../assets/GS.png";
+import GS from "../assets/GS.jpg";
 import { Link, useLocation } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import blankPfp from "../assets/blank.png"
