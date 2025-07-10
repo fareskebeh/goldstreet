@@ -24,30 +24,30 @@ const Dashboard = () => {
     }
   };
 
-    useEffect(() => {
-      const getData = async () => {
-        const { data: authData } = await db.auth.getUser();
-        setUser(authData.user);
+  useEffect(() => {
+    const getData = async () => {
+      const { data: authData } = await db.auth.getUser();
+      setUser(authData.user);
 
-        const { data: profile, error } = await db
-          .from("profiles")
-          .select("telegram_handle")
-          .eq("id", authData.user.id)
-          .single();
+      const { data: profile, error } = await db
+        .from("profiles")
+        .select("telegram_handle")
+        .eq("id", authData.user.id)
+        .single();
 
-        if (error) {
-          setMsg("Failed to fetch profile: " + error.message);
-          return;
-        }
+      if (error) {
+        setMsg("Failed to fetch profile: " + error.message);
+        return;
+      }
 
-        setData({
-          uname: profile.telegram_handle,
-          mail: authData.user.email,
-        });
-      };
+      setData({
+        uname: profile.telegram_handle,
+        mail: authData.user.email,
+      });
+    };
 
-      getData();
-    }, []);
+    getData();
+  }, []);
 
   return (
     <div className="pt-22 h-[100dvh] relative">
@@ -103,22 +103,30 @@ const Dashboard = () => {
       />
 
       <div className="flex flex-col justify-center text-center gap-4 items-center p-4">
-        <img className="w-40 rounded-full" src={blankPfp} alt="" />
+        <img className="w-35 rounded-full" src={blankPfp} alt="" />
         <div className="flex justify-center gap-4">
           <div>
-            { data.uname ?  
-
-            ( <><div className="text-4xl mb-2 text-white font-bold">
-              {data.uname}
-            </div>
-            <div className="text-xl text-neutral-500">
-              {data.mail}
-            </div></>) : <div className="verify-loader"/>
-              }
+            {data.uname ? (
+              <>
+                <div className="text-4xl mb-2 text-white font-bold">
+                  {data.uname}
+                </div>
+                <div className="text-xl text-neutral-500">{data.mail}</div>
+              </>
+            ) : (
+              <div className="verify-loader" />
+            )}
           </div>
         </div>
-        <div className="text-neutral-400 border-2 text-xl border-dashed rounded-xl p-11 border-neutral-400">
-          <p>New features are coming to the dashboard...</p>
+        <div className="text-xl text-left rounded-xl p-2 flex flex-col items-start">
+          <p className="text-2xl font-bold text-white">Instructions to join our VIP channel</p>
+          <ol className="list-decimal ml-8 space-y-2 flex flex-col items-start text-neutral-400">
+            <li>Open Telegram</li>
+            <li>Search for our bot @goldie_gsbot</li>
+            <li>Start the bot and verify using the <span className="font-bold text-white">/join</span> command</li>
+            <li>Join the channel through the invite link and start winning</li>
+          </ol>
+          <p className="text-red-500">NOTE: The username should be the same as the one you have on Telegram </p>
         </div>
       </div>
 
