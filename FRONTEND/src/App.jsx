@@ -13,29 +13,37 @@ import Pricing from "./components/Pricing";
 import MbNav from "./components/MbNav";
 import DtNav from "./components/DtNav";
 import SlideShow from "./slide/SlideShow";
-import Community from "./components/Community"
-import ContactUs from "./components/ContactUs"
-import bg from "./assets/bg.jpg"
+import Community from "./components/Community";
+import ContactUs from "./components/ContactUs";
+import bg from "./assets/bg.jpg";
 import db from "./client/db";
 import Verify from "./authPages/Verify";
 import Dashboard from "./components/Dashboard";
 
 const App = () => {
-  const[verified,setVerified] = useState("unverified")
-  
-  const [user, setUser] = useState(null);
+  const [verified, setVerified] = useState("unverified");
 
+  const [user, setUser] = useState(null);
 
   const [vp, setVp] = useState(null);
 
   useEffect(() => {
-  const { data: { subscription } } = db.auth.onAuthStateChange((_event, session) => {
-    setUser(session?.user || null);
-  });
+    const getSession = async () => {
+      const {
+        data: { session },
+      } = await db.auth.getSession();
+      setUser(session?.user || null);
+    };
+    getSession();
 
-  return () => subscription.unsubscribe();
-}, []);
+    const {
+      data: { subscription },
+    } = db.auth.onAuthStateChange((_event, session) => {
+      setUser(session?.user || null);
+    });
 
+    return () => subscription.unsubscribe();
+  }, []);
 
   useEffect(() => {
     const adjVp = () => {
@@ -48,24 +56,47 @@ const App = () => {
 
   return (
     <Router>
-      <div className="relative" >
-      <div className="fixed inset-0 -z-20 brightness-30 bg-center bg-cover" style={{backgroundImage:`url('${bg}')`}}/>
-      {vp === "small" ? <MbNav user={user} /> : <DtNav user={user} />}
+      <div className="relative">
+        <div
+          className="fixed inset-0 -z-20 brightness-30 bg-center bg-cover"
+          style={{ backgroundImage: `url('${bg}')` }}
+        />
+        {vp === "small" ? <MbNav user={user} /> : <DtNav user={user} />}
         <Routes>
-          <Route path="/" element={<SlideShow vp={vp}/>}>
+          <Route path="/" element={<SlideShow vp={vp} />}>
             <Route index element={<Navigate to="home" />} />
-            <Route path="home" element={<Home/>}/>
-            <Route path="community" element={<Community/>}/>
-            <Route path="pricing" element={<Pricing/>}/>
-            <Route path="contact-us" element={<ContactUs/>}/>
+            <Route path="home" element={<Home />} />
+            <Route path="community" element={<Community />} />
+            <Route path="pricing" element={<Pricing />} />
+            <Route path="contact-us" element={<ContactUs />} />
           </Route>
-          <Route path="/login" element={user? <Navigate to="/home"/> : <Login />} />
-          <Route path="/register" element={user ? <Navigate to="/home"/> : <Register />} />
-          <Route path="/verify" element={verified==="verified" ? <Navigate to="/home"/> : verified==="verifying" ? <Verify setVerified={setVerified} verified={verified}/> : <Navigate to="/home"/>}/>
+          <Route
+            path="/login"
+            element={user ? <Navigate to="/home" /> : <Login />}
+          />
+          <Route
+            path="/register"
+            element={user ? <Navigate to="/home" /> : <Register />}
+          />
+          <Route
+            path="/verify"
+            element={
+              verified === "verified" ? (
+                <Navigate to="/home" />
+              ) : verified === "verifying" ? (
+                <Verify setVerified={setVerified} verified={verified} />
+              ) : (
+                <Navigate to="/home" />
+              )
+            }
+          />
           <Route path="*" element={<NotFound />} />
-          <Route path="/dashboard" element={user? <Dashboard/> : <Navigate to="/home"/>}/>
+          <Route
+            path="/dashboard"
+            element={user ? <Dashboard /> : <Navigate to="/home" />}
+          />
         </Routes>
-        </div>
+      </div>
     </Router>
   );
 };
