@@ -62,3 +62,11 @@ body {
   50%   {transform:scaleY(-1) rotate(0deg)}
   100%  {transform:scaleY(-1) rotate(-135deg)}
 }
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+hr {
+  border: solid 1px #50505045;
+}

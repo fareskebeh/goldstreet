@@ -2,11 +2,15 @@ import React, { useEffect, useState } from "react";
 import db from "../client/db";
 import blankPfp from "../assets/blank.png";
 import { AnimatePresence, motion } from "framer-motion";
+import { HiCog, HiLogout, HiX } from "react-icons/hi";
+import Manage from "./Manage";
 
 const Dashboard = () => {
   const [msg, setMsg] = useState(null);
   const [popup, setPopup] = useState(false);
-  const[logging,setLogging]= useState(false)
+  const [manage, setManage] = useState(false);
+  const [logging, setLogging] = useState(false);
+  const [user, setUser] = useState(null);
   const [data, setData] = useState({
     uname: "",
     mail: "",
@@ -16,24 +20,34 @@ const Dashboard = () => {
     const { error } = await db.auth.signOut();
     if (error) {
       setMsg(error.message);
-      setLogging(false)
+      setLogging(false);
     }
   };
 
+    useEffect(() => {
+      const getData = async () => {
+        const { data: authData } = await db.auth.getUser();
+        setUser(authData.user);
 
-  useEffect(() => {
-    const getData = async () => {
-      const {
-        data: { user },
-      } = await db.auth.getUser();
-      setData({
-        ...data,
-        uname: user.user_metadata.username,
-        mail: user.user_metadata.email,
-      });
-    };
-    getData();
-  }, []);
+        const { data: profile, error } = await db
+          .from("profiles")
+          .select("telegram_handle")
+          .eq("id", authData.user.id)
+          .single();
+
+        if (error) {
+          setMsg("Failed to fetch profile: " + error.message);
+          return;
+        }
+
+        setData({
+          uname: profile.telegram_handle,
+          mail: authData.user.email,
+        });
+      };
+
+      getData();
+    }, []);
 
   return (
     <div className="pt-22 h-[100dvh] relative">
@@ -47,21 +61,26 @@ const Dashboard = () => {
             className="absolute inset-0 flex justify-center items-center bg-black/70"
           >
             <motion.div
-              initial={{opacity:0, y:10}}
-              exit={{opacity:0, y:10}}
-              animate={{opacity:1, y:0}}
-              transition={{duration:0.2}}
+              initial={{ opacity: 0, y: 10 }}
+              exit={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.2 }}
               className="text-white text-2xl flex flex-col gap-8 w-70 border border-neutral-900 bg-black p-4 rounded-2xl"
             >
               <p>Are you sure you want to log out?</p>
 
-              <div className={`flex justify-center gap-4 *:p-3
+              <div
+                className={`flex justify-center gap-4 *:p-3
               
-              *:text-xl *:rounded-xl *:cursor-pointer *:font-bold *:border`}>
-                <button onClick={()=>logOut()} className={`transition duration-100 ${logging ? "bg-neutral-500" : "bg-white"} text-black`}>
-                  {
-                    logging ? <div className="loader mx-8"></div> : "Log Out"
-                  }
+              *:text-xl *:rounded-xl *:cursor-pointer *:font-bold *:border`}
+              >
+                <button
+                  onClick={() => logOut()}
+                  className={`transition duration-100 ${
+                    logging ? "bg-neutral-500" : "bg-white"
+                  } text-black`}
+                >
+                  {logging ? <div className="loader mx-8"></div> : "Log Out"}
                 </button>
                 <button
                   onClick={() => setPopup(false)}
@@ -70,32 +89,52 @@ const Dashboard = () => {
                   Cancel
                 </button>
               </div>
-                {msg ? <p className="text-red-500 font-bold">{msg}</p> : ""}
+              {msg ? <p className="text-red-500 font-bold">{msg}</p> : ""}
             </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
 
+      <Manage
+        user={user}
+        manage={manage}
+        setManage={setManage}
+        uname={data.uname}
+      />
+
       <div className="flex flex-col justify-center text-center gap-4 items-center p-4">
         <img className="w-40 rounded-full" src={blankPfp} alt="" />
-        <div>
-          <p className="text-4xl mb-2 text-white font-bold">
-            {data ? data.uname : "Loading..."}
-          </p>
-          <p className="text-xl text-neutral-500">
-            {data ? data.mail : "Loading..."}
-          </p>
+        <div className="flex justify-center gap-4">
+          <div>
+            { data.uname ?  
+
+            ( <><div className="text-4xl mb-2 text-white font-bold">
+              {data.uname}
+            </div>
+            <div className="text-xl text-neutral-500">
+              {data.mail}
+            </div></>) : <div className="verify-loader"/>
+              }
+          </div>
         </div>
-        <div className="text-neutral-400 border-2 text-xl border-dashed rounded-xl p-18 border-neutral-400">
+        <div className="text-neutral-400 border-2 text-xl border-dashed rounded-xl p-11 border-neutral-400">
           <p>New features are coming to the dashboard...</p>
         </div>
       </div>
 
-      <div className="flex justify-center">
+      <div className="flex justify-center gap-4">
+        <button
+          onClick={() => setManage(true)}
+          className="flex  transition duration-150 gap-2 items-center cursor-pointer font-bold text-xl p-2 rounded-md bg-neutral-800 text-white"
+        >
+          <HiCog />
+          Manage Profile
+        </button>
         <button
           onClick={() => setPopup(true)}
-          className="cursor-pointer font-bold text-xl p-2 rounded-md bg-white"
+          className="flex  transition duration-150 gap-2 items-center cursor-pointer font-bold text-xl p-2 rounded-md bg-white"
         >
+          <HiLogout />
           Log Out
         </button>
       </div>
