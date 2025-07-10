@@ -71,7 +71,7 @@ const Login = () => {
             <input
               onChange={(e) => setEmail(e.target.value)}
               value={email}
-              className="text-2xl invalid:border-red-700 invalid:bg-red-700/20 transition duration-300 outline-none text-white placeholder:text-neutral-600 p-3 border border-neutral-900 rounded-xl bg-black/40"
+              className=" text-2xl invalid:focus:border-red-700 invalid:bg-red-700/20  transition duration-300 outline-none text-white placeholder:text-neutral-600 p-3 border border-neutral-900 rounded-xl bg-black/40 focus:border-amber-500"
               type="email"
               placeholder="Email"
             />
@@ -80,7 +80,7 @@ const Login = () => {
               <input
                 onChange={(e) => setPassword(e.target.value)}
                 value={password}
-                className="text-2xl w-full outline-none text-white placeholder:text-neutral-600 p-3 border border-neutral-900 rounded-xl bg-black/40"
+                className="focus:border-amber-500 transition duration-200 text-2xl w-full outline-none text-white placeholder:text-neutral-600 p-3 border border-neutral-900 rounded-xl bg-black/40"
                 type={pwVis ? "text" : "password"}
                 placeholder="Password"
               />

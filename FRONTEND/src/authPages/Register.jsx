@@ -129,16 +129,17 @@ const Register = () => {
               setCredentials({ ...credentials, username: e.target.value })
             }
             value={credentials.username}
-            className="text-2xl outline-none w-full text-white placeholder:text-neutral-600 p-3 rounded-xl bg-black/40 border border-neutral-900"
+            className="text-2xl transition duration-200 focus:border-amber-500 outline-none w-full text-white placeholder:text-neutral-600 p-3 rounded-xl bg-black/40 border border-neutral-900"
             type="text"
-            placeholder="Your telegram handle"
+            placeholder="Your telegram handle (without @)"
           />
+          <p className="text-white">*if you don't have a Telegram handle, add one.</p>
           <input
             onChange={(e) =>
               setCredentials({ ...credentials, email: e.target.value })
             }
             value={credentials.email}
-            className="invalid:bg-red-900/30 w-full border transition duration-100 invalid:border-red-900 text-2xl outline-none text-white placeholder:text-neutral-600 p-3 rounded-xl bg-black/40 border-neutral-900"
+            className="invalid:bg-red-900/30 focus:border-amber-500 w-full border transition duration-200 invalid:focus:border-red-900 text-2xl outline-none text-white placeholder:text-neutral-600 p-3 rounded-xl bg-black/40 border-neutral-900"
             type="email"
             placeholder="Email"
           />
@@ -149,14 +150,14 @@ const Register = () => {
                 setPasswords({ ...passwords, first: e.target.value })
               }
               value={passwords.first}
-              className="text-2xl w-full outline-none text-white placeholder:text-neutral-600 p-3 rounded-xl bg-black/40 border border-neutral-900"
+              className="text-2xl transition duration-200 w-full outline-none text-white focus:border-amber-500 placeholder:text-neutral-600 p-3 rounded-xl bg-black/40 border border-neutral-900"
               type={pwVis ? "text" : "password"}
               placeholder="Password"
             />
             <button
               onClick={() => setPwVis(!pwVis)}
               type="button"
-              className={`sm:cursor-pointer transition duration-100 ${
+              className={`sm:cursor-pointer transition duration-100  ${
                 pwVis ? "text-white" : "text-neutral-600"
               } absolute top-4.5 right-4`}
             >
@@ -173,7 +174,7 @@ const Register = () => {
               setPasswords({ ...passwords, second: e.target.value })
             }
             value={passwords.second}
-            className="text-2xl w-full border border-neutral-900 outline-none text-white placeholder:text-neutral-600 p-3 rounded-xl bg-black/40"
+            className="transition duration-200 text-2xl w-full border focus:border-amber-500 border-neutral-900 outline-none text-white placeholder:text-neutral-600 p-3 rounded-xl bg-black/40"
             type={pwVis ? "text" : "password"}
             placeholder="Confirm Password"
           />
