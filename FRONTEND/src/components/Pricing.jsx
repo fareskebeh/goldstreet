@@ -43,7 +43,7 @@ const Pricing = () => {
         </p>
         <div className="flex flex-col">
           {plan.perks.map((perk, index) => (
-            <div className="flex items-center gap-2 text-xl sm:text-2xl">
+            <div key={index} className="flex items-center gap-2 text-xl sm:text-2xl">
               <HiCheck size={24} fill="#00ff00" />
               <p>{perk}</p>
             </div>
