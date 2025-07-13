@@ -2,12 +2,15 @@ import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { HiX } from "react-icons/hi";
 import db from "../client/db";
+import ConfirmPopup from "./ConfirmPopup";
 
 const Manage = ({ manage, setManage, uname, user }) => {
   const [saving, setSaving] = useState(false);
   const [msg, setMsg] = useState(null);
   const [unameTo, setUnameTo] = useState(uname || "");
   const [unsaved, setUnsaved] = useState(false);
+  const [uValid, setUValid] = useState(true);
+  const [delPop, setDelPop] = useState(false);
 
   useEffect(() => {
     if (manage) setUnameTo(uname);
@@ -19,7 +22,12 @@ const Manage = ({ manage, setManage, uname, user }) => {
       return;
     }
 
-    if (!unameTo || unameTo === uname) {
+    if (unameTo === "") {
+      setUValid(false);
+      return;
+    }
+
+    if (unameTo === uname) {
       setManage(false);
       return;
     }
@@ -30,7 +38,7 @@ const Manage = ({ manage, setManage, uname, user }) => {
         .from("profiles")
         .update({ telegram_handle: unameTo })
         .eq("id", user.id)
-        .select(); // ensures we get a response
+        .select();
 
       if (error) {
         setMsg(error.message);
@@ -71,7 +79,7 @@ const Manage = ({ manage, setManage, uname, user }) => {
               exit={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.2 }}
-              className="text-white scrollbar-hide text-2xl flex flex-col gap-8 w-[90%] sm:w-[40%] max-h-[80%] overflow-y-auto border border-neutral-800 bg-black p-4 rounded-2xl"
+              className="text-white scrollbar-hide text-2xl flex flex-col gap-8 w-[90%] sm:w-[70%] md:w-[50%] max-h-[80%] overflow-y-auto border border-neutral-800 bg-black p-4 rounded-2xl"
             >
               <div className="text-3xl font-bold flex justify-between items-center">
                 <p>Manage your profile</p>
@@ -88,6 +96,13 @@ const Manage = ({ manage, setManage, uname, user }) => {
                   value={unameTo}
                   type="text"
                 />
+                <p
+                  className={`${
+                    uValid ? "opacity-0" : "opacity-100"
+                  } text-base transition duration-200 text-red-500`}
+                >
+                  {uValid ? "" : "*This field is required"}
+                </p>
               </div>
 
               <hr />
@@ -103,11 +118,15 @@ const Manage = ({ manage, setManage, uname, user }) => {
 
               <div className="bg-red-900/20 p-2 border flex flex-col gap-4 border-red-600/30 rounded-lg">
                 <p className="font-bold">Danger zone</p>
-                <button className="rounded-lg bg-red-500 p-2 font-bold hover:scale-102 cursor-pointer transition duration-150 text-xl">
-                  Delete Profile
+                <button
+                  onClick={() => setDelPop(true)}
+                  className="rounded-lg bg-red-500 p-2 font-bold hover:bg-red-500/90 cursor-pointer transition duration-150 text-xl"
+                >
+                  Delete Account
                 </button>
-                <p className="text-lg w-[70%] text-neutral-400">
-                  NOTE: This action is irreversible!
+                <p className="text-lg w-[70%] text-red-300">
+                  Completely removes your account from our database and
+                  effectively cancels out your subscription
                 </p>
               </div>
 
@@ -172,6 +191,10 @@ const Manage = ({ manage, setManage, uname, user }) => {
             </motion.div>
           </motion.div>
         )}
+      </AnimatePresence>
+
+      <AnimatePresence>
+        {delPop && <ConfirmPopup setDelPop={setDelPop} />}
       </AnimatePresence>
     </div>
   );

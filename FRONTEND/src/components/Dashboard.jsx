@@ -4,6 +4,7 @@ import blankPfp from "../assets/blank.png";
 import { AnimatePresence, motion } from "framer-motion";
 import { HiCog, HiLogout, HiX } from "react-icons/hi";
 import Manage from "./Manage";
+import { useNavigate } from "react-router-dom";
 
 const Dashboard = () => {
   const [msg, setMsg] = useState(null);
@@ -23,6 +24,8 @@ const Dashboard = () => {
       setLogging(false);
     }
   };
+
+  
 
   useEffect(() => {
     const getData = async () => {
@@ -102,7 +105,7 @@ const Dashboard = () => {
         uname={data.uname}
       />
 
-      <div className="flex flex-col justify-center text-center gap-4 items-center p-4">
+      <div className="flex flex-col justify-center text-center gap-2 items-center p-4">
         <img className="w-35 rounded-full" src={blankPfp} alt="" />
         <div className="flex justify-center gap-4">
           <div>
@@ -118,7 +121,7 @@ const Dashboard = () => {
             )}
           </div>
         </div>
-        <div className="text-xl text-left rounded-xl p-2 flex flex-col items-start">
+        <div className="text-xl sm:text-base text-left rounded-xl p-2 flex flex-col items-start">
           <p className="text-2xl font-bold text-white">Instructions to join our VIP channel</p>
           <ol className="list-decimal ml-8 space-y-2 flex flex-col items-start text-neutral-400">
             <li>Open Telegram</li>
