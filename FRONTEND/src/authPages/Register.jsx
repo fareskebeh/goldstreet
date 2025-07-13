@@ -6,7 +6,7 @@ import db from "../client/db";
 import { motion, AnimatePresence } from "framer-motion";
 import { HiXCircle, HiCheckCircle } from "react-icons/hi";
 
-const Register = () => {
+const Register = ({setVerified}) => {
   const navigate = useNavigate();
   const [pwVis, setPwVis] = useState(false);
   const [credentials, setCredentials] = useState({

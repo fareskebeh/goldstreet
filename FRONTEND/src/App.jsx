@@ -28,18 +28,19 @@ const App = () => {
   const [vp, setVp] = useState(null);
 
   useEffect(() => {
-    const getSession = async () => {
-      const {
-        data: { session },
-      } = await db.auth.getSession();
-      setUser(session?.user || null);
-    };
-    getSession();
-
     const {
       data: { subscription },
-    } = db.auth.onAuthStateChange((_event, session) => {
-      setUser(session?.user || null);
+    } = db.auth.onAuthStateChange(async (event, session) => {
+      const user = session?.user;
+      const isConfirmed = !!user?.email_confirmed_at;
+
+      if (event === "SIGNED_IN" && isConfirmed) {
+        // insert into profiles if not already there
+        await db.from("profiles").upsert({
+          id: user.id,
+          telegram_handle: user.user_metadata?.username || "unknown",
+        });
+      }
     });
 
     return () => subscription.unsubscribe();
@@ -76,7 +77,13 @@ const App = () => {
           />
           <Route
             path="/register"
-            element={user ? <Navigate to="/home" /> : <Register setVerified={setVerified}/>}
+            element={
+              user ? (
+                <Navigate to="/home" />
+              ) : (
+                <Register setVerified={setVerified} />
+              )
+            }
           />
           <Route
             path="/verify"
