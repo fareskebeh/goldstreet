@@ -11,10 +11,6 @@ const ConfirmPopup = ({ setDelPop }) => {
 
   const delPoint = import.meta.env.VITE_DELETE_ENDPOINT;
   const navigate = useNavigate();
-   
-  useEffect(()=> {
-        console.log(delPoint)
-    },[])
 
   const deleteAcc = async () => {
     setDeleting(true);
@@ -47,7 +43,7 @@ const ConfirmPopup = ({ setDelPop }) => {
     } else {
       const error = await res.json();
       setMsg(error.message);
-      setDeleting(false )
+      setDeleting(false)
     }
   };
 
