@@ -76,7 +76,7 @@ const App = () => {
           />
           <Route
             path="/register"
-            element={user ? <Navigate to="/home" /> : <Register />}
+            element={user ? <Navigate to="/home" /> : <Register setVerified={setVerified}/>}
           />
           <Route
             path="/verify"

@@ -103,6 +103,7 @@ const Register = () => {
         message: "Successful Signup! Check your email to confirm",
         state: "success",
       });
+      setVerified("verifying");
       setMsg(true);
       navigate("/verify")
     }
