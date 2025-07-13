@@ -83,13 +83,14 @@ const App = () => {
             element={
               verified === "verified" ? (
                 <Navigate to="/home" />
-              ) : verified === "verifying" ? (
+              ) : verified === "verifying" || verified === "unverified" ? (
                 <Verify setVerified={setVerified} verified={verified} />
               ) : (
                 <Navigate to="/home" />
               )
             }
           />
+
           <Route path="*" element={<NotFound />} />
           <Route
             path="/dashboard"
